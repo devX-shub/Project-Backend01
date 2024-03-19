@@ -17,6 +17,11 @@ app.use(cookieParser())
 
 //routes
 
+app.get('/', (req,res) =>{
+    res.send("Hi welcome");
+    console.log("app started")
+})
+
 import userRouter from "./routes/user.routes.js"
 
 //routes declration
