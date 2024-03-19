@@ -31,6 +31,14 @@ const registerUser = asyncHandler(async (req,res) => {
     // check for images, check for avatar
     const avatarLocalPath =  req.files?.avatar[0]?.path
     const coverImagePath = req.files?.coverImage[0]?.path
+
+    /*
+    let converImagePath;
+    if(req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length > 0)
+    {
+        converImagePath = req.files.coverImage[0].path
+    }
+    */
     if(!avatarLocalPath)
     {
         throw new ApiError(400,"avatar is required")
@@ -53,7 +61,7 @@ const registerUser = asyncHandler(async (req,res) => {
         username: username.toLowerCase()
     })
     // remove password and regresh token field from response
-    const dataCreated = await User.findById(user._id).select(
+    const dataCreated = await User.findById(userData._id).select(
         "-password -refreshToken"
     )
     // check for user creation

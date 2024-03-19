@@ -19,7 +19,7 @@ const uploadOnCloud = async (loacalFilePath) => {
         console.log("file uploaded",response.url);
         return response
     } catch (error) {
-        fs.unlinkSync(loacalFilePath)  // remove local saved temp file as the upload failed
+        // fs.unlinkSync(loacalFilePath)  // remove local saved temp file as the upload failed
         return null;
     }
 }
