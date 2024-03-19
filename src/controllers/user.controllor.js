@@ -6,7 +6,7 @@ import {ApiResponse} from "../utils/ApiResponse.js"
 
 const registerUser = asyncHandler(async (req,res) => {
     // get details from frontend
-    const {fullName , email,username,password} = req.body
+    const {fullName,email,username,password} = req.body
     // validation
     if(fullName === "")
     {
@@ -19,8 +19,8 @@ const registerUser = asyncHandler(async (req,res) => {
         throw new ApiError(400,"All fields are required")
     }
     // check if user is already exist
-    const existingUser = User.findOne({
-        $or : [{usernane},{email}]
+    const existingUser =await User.findOne({
+        $or : [{username},{email}]
     })
 
     if(existingUser)
